@@ -38,5 +38,25 @@ public class CityController {
         cityService.delete(cityId);
         return "redirect:/cities";
     }
+    @GetMapping("/edit")
+    public String editCity(@RequestParam(name = "id") Integer cityId, Model model) {
+       City city= cityService.findById(cityId);
+       model.addAttribute("city", city);
+       return "edit_city";
+    }
+
+    @PostMapping("/update_city")
+    public String updateCity(@RequestParam Integer id, @RequestParam String name) {
+        cityService.updateCity(id,name);
+        return "redirect:/cities";
+    }
+     @GetMapping("/people")
+    public String showPeople(@RequestParam Integer id, Model model) {
+        model.addAttribute("city",cityService.findById(id));
+        return "people_by_city";
+     }
+
 
 }
+
+

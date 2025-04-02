@@ -7,9 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@AllArgsConstructor
 @Service
+@AllArgsConstructor
 public class CityService {
     private final CityRepository cityRepository;
 
@@ -22,5 +21,16 @@ public class CityService {
 
     public void delete(Integer id) {
         cityRepository.deleteById(id);
+    }
+
+    public City findById(Integer cityId) {
+        return cityRepository.findById(cityId).orElse (null);
+    }
+
+    public void updateCity(Integer id, String name) {
+         cityRepository.findById(id).ifPresent(city -> {
+             city.setName(name);
+             cityRepository.save(city);
+         });
     }
 }

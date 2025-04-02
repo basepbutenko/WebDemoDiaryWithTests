@@ -22,14 +22,16 @@
             <th>City name</th>
             <th>x</th>
             <th>E</th>
+            <th>People</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="c:${cities}" >
+        <tr th:each="c:${cities}">
             <td th:text="${c.id}"></td>
             <td th:text="${c.name}"></td>
-            <td> <a th:href="@{cities/delete(id=${c.id})}">delete </a> </td>
-            <td> <a href="">edit </a>   </td>
+            <td> <a th:href="@{cities/delete(id=${c.id})}">delete</a></td>
+            <td> <a th:href="@{cities/edit(id=${c.id})}">edit</a></td>
+            <td> <a th:href="@{cities/people(id=${c.id})}">show</a></td>
 
         </tr>
 
