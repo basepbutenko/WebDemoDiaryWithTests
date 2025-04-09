@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Find People</title>
+</head>
+<body>
+<h1> Find people</h1>
+<h2>Find people by name</h2>
+<form method="post" action="/people/by_name">
+    <label for="name"></label>
+    <input type="text" id="name" name="name"/>
+    <button type="submit">Find!</button>
+</form>
+<h2> Find people by first letters</h2>
+<form method="post" action="/people/by_first_letters">
+    <label for="letters">First letters</label>
+    <input type="text" id="letters" name="firstLetters"/>
+    <button type="submit">Find!</button>
+</form>
+<h2> Find by cities</h2>
+<form method="post" action="/people/by_cities">
+    <label for="cities">Cities</label>
+    <select id="cities" name="cities" size="8" multiple>
+        <option th:each="c : ${cities}" th:text="${c.name}" th:value="${c.id}"></option>
+    </select>
+    <button type="submit">Find!</button>
+
+</form>
+</body>
+</html>

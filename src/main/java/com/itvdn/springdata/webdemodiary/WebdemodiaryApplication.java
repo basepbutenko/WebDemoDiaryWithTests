@@ -8,7 +8,7 @@ public class WebdemodiaryApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(WebdemodiaryApplication.class, args);
+         SpringApplication.run(WebdemodiaryApplication.class, args);
     }
 
 }
