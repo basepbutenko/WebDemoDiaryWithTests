@@ -1,6 +1,8 @@
 package com.itvdn.springdata.webdemodiary.controller;
 
 import com.itvdn.springdata.webdemodiary.data.Person;
+
+import com.itvdn.springdata.webdemodiary.data.PersonInfo;
 import com.itvdn.springdata.webdemodiary.service.CityService;
 import com.itvdn.springdata.webdemodiary.service.PersonService;
 import lombok.AllArgsConstructor;
@@ -33,10 +35,10 @@ public class PersonController {
 
     @PostMapping("/by_name")
     public String findByName(Model model, @RequestParam String name) {
-        List<Person> people = personService.findByName(name);
+        List<PersonInfo> people = personService.findByName(name);
         model.addAttribute("people", people);
         model.addAttribute("info","Find by name: " + name );
-        return "people";
+        return "people_view";
     }
 
     @PostMapping("/by_first_letters")

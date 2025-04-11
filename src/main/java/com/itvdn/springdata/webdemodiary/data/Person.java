@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -23,7 +24,7 @@ public class Person {
     private String lastName;
 
     @Column(name = "birthday")
-    private Instant birthday;
+    private LocalDate birthday;
 
     @Column(name = "phone", length = 20)
     private String phone;

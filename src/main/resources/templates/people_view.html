@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>People</title>
+</head>
+<body>
+<div th:if="${info!= null}" style="width:100%; text-align:center;">
+    <h1 th:text="${info}"></h1>
+</div>
+<div style="width: 34%; margin-left: auto; margin-right: auto">
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthday</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${people}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.firstName}"></td>
+            <td th:text="${p.lastName}"></td>
+            <td th:text="${p.birthdayText}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

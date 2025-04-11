@@ -1,6 +1,8 @@
 package com.itvdn.springdata.webdemodiary.service;
 
 import com.itvdn.springdata.webdemodiary.data.Person;
+
+import com.itvdn.springdata.webdemodiary.data.PersonInfo;
 import com.itvdn.springdata.webdemodiary.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,8 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public List<Person> findByName(String name) {
+    public List<PersonInfo> findByName(String name) {
         return personRepository.findPeopleByName(name);
-
     }
 
     public List<Person> findByFirstLetters(String firstLetters) {
