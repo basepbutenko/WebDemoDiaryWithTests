@@ -5,6 +5,7 @@ import com.itvdn.springdata.webdemodiary.data.Person;
 import com.itvdn.springdata.webdemodiary.data.PersonInfo;
 import com.itvdn.springdata.webdemodiary.repository.PersonRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,18 +18,18 @@ public class PersonService {
 
 
     public List<Person> findAll() {
-        return personRepository.findAll();
+        return personRepository.findAll(Sort.by("firstName").descending());
     }
 
     public List<PersonInfo> findByName(String name) {
-        return personRepository.findPeopleByName(name);
+        return personRepository.findByFirstName(name);
     }
 
-    public List<Person> findByFirstLetters(String firstLetters) {
-        return personRepository.findPeopleByFirstLetters(firstLetters);
+    public List<PersonInfo> findByFirstLetters(String firstLetters) {
+        return personRepository.findByFirstNameStartsWith(firstLetters);
     }
 
-    public List<Person> findByCities(List<Integer> cityIds) {
-        return personRepository.findByCities(cityIds);
+    public List<PersonInfo> findByCities(List<Integer> cityIds) {
+        return personRepository.findByCity_IdIn(cityIds);
     }
 }

@@ -43,19 +43,21 @@ public class PersonController {
 
     @PostMapping("/by_first_letters")
     public String findByFirstLetter(Model model, @RequestParam String firstLetters) {
-        List<Person> people = personService.findByFirstLetters(firstLetters);
+        List<PersonInfo> people = personService.findByFirstLetters(firstLetters);
         model.addAttribute("people", people);
         model.addAttribute("info","Find by First Letters: " + firstLetters);
-        return "people";
+        return "people_view";
 
     }
 
     @PostMapping("/by_cities")
     public String findByCities(Model model, @RequestParam ("cities") List<Integer> cityIds) {
-        List<Person>people=personService.findByCities(cityIds);
+        List<PersonInfo>people=personService.findByCities(cityIds);
         model.addAttribute("people", people);
         model.addAttribute("info","Find by Cities ");
-        return "people";
+        return "people_view" +
+               "" +
+               "";
 
     }
 

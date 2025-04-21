@@ -9,8 +9,15 @@ import java.util.Collection;
 import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
-    @Query("select p from Person p where p.firstName = ?1")
-    List<PersonInfo> findPeopleByName(String firstName);
+    List<PersonInfo> findByFirstName(String firstName);
+
+    List<PersonInfo> findByFirstNameStartsWith(String firstName);
+
+    List<PersonInfo> findByCity_IdIn(Collection<Integer> ids);
+
+
+//    @Query("select p from Person p where p.firstName = ?1")
+//    List<PersonInfo> findPeopleByName(String firstName);
 
     @Query("select p from Person p where p.firstName like concat(?1, '%')")
     List<Person> findPeopleByFirstLetters(String firstName);
