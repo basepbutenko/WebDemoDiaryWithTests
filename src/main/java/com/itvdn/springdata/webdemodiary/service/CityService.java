@@ -4,6 +4,7 @@ import com.itvdn.springdata.webdemodiary.data.City;
 import com.itvdn.springdata.webdemodiary.repository.CityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +33,10 @@ public class CityService {
              city.setName(name);
              cityRepository.save(city);
          });
+    }
+
+    @Transactional
+    public void addAll(List<String> citiesList) {
+        citiesList.stream().map(String::trim).filter(s->!s.isBlank()).map(City::new).forEach(cityRepository::save);
     }
 }

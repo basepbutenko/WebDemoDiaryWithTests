@@ -2,15 +2,19 @@ package com.itvdn.springdata.webdemodiary.data;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "person")
+@NoArgsConstructor
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +43,16 @@ public class Person {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+    @ManyToMany(mappedBy = "people")
+    private Set<Meeting> meetings=new LinkedHashSet<>();
+
+    public Person(String fname, String lname, LocalDate bday, String phone, String email, String address, City city) {
+        this.firstName = fname;
+        this.lastName = lname;
+        this.birthday = bday;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.city = city;
+    }
 }

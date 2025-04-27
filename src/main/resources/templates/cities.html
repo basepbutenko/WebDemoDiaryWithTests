@@ -6,14 +6,16 @@
 </head>
 <body>
 <div style="width: 34%; margin-left: auto; margin-right: auto;">
-    <label for="cities">Cities </label> <br/>
-    <select size="5" id="cities">
-        <option th:each="c:${cities}" th:text="${c.name}"></option>
-    </select><br/>
+
     <form action="cities/add_city" method="post">
         <label for="city">City </label>
         <input type="text" id="city" name="city">
         <button type="submit">Add</button>
+    </form>
+    <form action="cities/add_cities" method="post">
+        <label for="cities">Cities </label>
+        <input type="text" id="cities" name="cities">
+        <button type="submit">Add all</button>
     </form>
     <table>
         <thead>
@@ -29,9 +31,9 @@
         <tr th:each="c:${cities}">
             <td th:text="${c.id}"></td>
             <td th:text="${c.name}"></td>
-            <td> <a th:href="@{cities/delete(id=${c.id})}">delete</a></td>
-            <td> <a th:href="@{cities/edit(id=${c.id})}">edit</a></td>
-            <td> <a th:href="@{cities/people(id=${c.id})}">show</a></td>
+            <td><a th:href="@{cities/delete(id=${c.id})}">delete</a></td>
+            <td><a th:href="@{cities/edit(id=${c.id})}">edit</a></td>
+            <td><a th:href="@{cities/people(id=${c.id})}">show</a></td>
 
         </tr>
 

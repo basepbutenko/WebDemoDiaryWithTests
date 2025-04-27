@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -31,5 +32,14 @@ public class PersonService {
 
     public List<PersonInfo> findByCities(List<Integer> cityIds) {
         return personRepository.findByCity_IdIn(cityIds);
+    }
+    public void add(Person person) {
+        personRepository.save(person);
+    }
+    public void deleteById(Integer id){
+        personRepository.deleteById(id);
+    }
+    public Optional<Person> findById(Integer id) {
+        return personRepository.findById(id);
     }
 }

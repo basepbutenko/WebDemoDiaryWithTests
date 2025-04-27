@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person's meetings</title>
+</head>
+<body>
+<h1 th:text=" 'Meetings for ' +${person.firstName}+ ' ' +${person.lastName}"></h1>
+<h2>Participating in: </h2>
+<table>
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Start</th>
+        <th>Finish</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m:${person.meetings}">
+        <td th:text="${m.description}"></td>
+        <td th:text="${#temporals.format(m.start, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${#temporals.format(m.finish, 'dd-MM-yyyy HH:mm')}"></td>
+        <td>
+            <a th:href="@{/people/meetings/cancel(pid=${person.id}, mid=${m.id})}">Cancel</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h2>Available meetings: </h2>
+<table>
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Start</th>
+        <th>Finish</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m:${available}">
+        <td th:text="${m.description}"></td>
+        <td th:text="${#temporals.format(m.start, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${#temporals.format(m.finish, 'dd-MM-yyyy HH:mm')}"></td>
+        <td>
+            <a th:href="@{/people/meetings/participate(pid=${person.id}, mid=${m.id})}">Participate</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

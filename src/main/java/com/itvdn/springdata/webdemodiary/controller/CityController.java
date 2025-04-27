@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -33,6 +35,15 @@ public class CityController {
         cityService.add(new City(city));
         return "redirect:/cities";
     }
+    @PostMapping("/add_cities")
+    public String addCities(@RequestParam String cities){
+      List<String> citiesList = Arrays.asList(cities.split(";"));
+      cityService.addAll(citiesList);
+        return "redirect:/cities";
+
+
+    }
+
     @GetMapping("/delete")
     public String deleteCity(@RequestParam(name = "id") Integer cityId) {
         cityService.delete(cityId);
